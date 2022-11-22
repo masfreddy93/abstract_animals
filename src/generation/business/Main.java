@@ -4,11 +4,6 @@ public class Main {
 
 	public static void main(String[] args) {
 		
-		/*
-		 Bonus
-		- Trovare il `Boss` con l'incasso annuale maggiore
-		- Trovare l'`Employee` con l'incasso annuale minore
-		 */
 		
 		Employee p1 = new Employee("Mario", "Rossi", "1920/08/23", 1500, 14);
 		System.out.println(p1.toString());
@@ -70,5 +65,59 @@ public class Main {
 		System.out.println("Medium Expense: \n" + mediumExpense);
 		
 		
+		
+		
+		/*
+		 Bonus
+		- Trovare il `Boss` con l'incasso annuale maggiore
+		- Trovare l'`Employee` con l'incasso annuale minore
+		 */
+		
+		int maxBossIncome = Integer.MIN_VALUE;
+		Boss maxBoss = null;
+		
+		for(int i = 0; i < persons.length; i++) {
+			
+			Person p = persons[i];
+			
+			if (p instanceof Boss) {
+				
+				Boss b = (Boss) p;
+//				b.getBonus();    questo ora si può fare, CAST fatto e suggerimento di IDE ---> sono sicuro che la conversione è andata bene
+				int income = b.getYearIncome();
+				
+				if(maxBossIncome < income) {
+					maxBossIncome = income;
+					maxBoss = b;
+				}
+				
+			}
+		}
+		
+		System.out.println("\nBoss with bigger income is: " +maxBoss);
+		
+		
+		int minEmployeeIncome = Integer.MAX_VALUE;
+		Employee minEmployee = null;
+		
+		for(int i = 0; i < persons.length; i++) {
+			
+			Person p = persons[i];
+			
+			if (p instanceof Employee) {
+				
+				Employee e = (Employee) p;
+//				b.getBonus();    questo ora si può fare, CAST fatto e suggerimento di IDE ---> sono sicuro che la conversione è andata bene
+				int income = e.getYearIncome();
+				
+				if(minEmployeeIncome > income) {
+					minEmployeeIncome = income;
+					minEmployee = e;
+				}
+				
+			}
+		}
+		
+		System.out.println("\nEmployee with lower income is: " +minEmployee);
 	}
 }
